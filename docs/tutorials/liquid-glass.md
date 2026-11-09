@@ -2,7 +2,7 @@
 title: "Building a Liquid Glass Panel with a Cursor-Following Highlight in CSS"
 description: "How to build a frosted glass card with a lit edge and a specular highlight that tracks the pointer, using backdrop-filter, a mask trick and two CSS variables."
 tags: css, javascript, ui, animation
-canonical_url: https://github.com/4yu5hvy45/atelier-fx/blob/main/docs/tutorials/liquid-glass.md
+canonical_url: https://github.com/ayushbeyond/atelier-fx/blob/main/docs/tutorials/liquid-glass.md
 ---
 
 # Building a Liquid Glass Panel with a Cursor-Following Highlight
@@ -13,7 +13,7 @@ Glass interfaces are back, and the good ones share three details that most "glas
 2. **There's a specular highlight**, and it moves when you do.
 3. **Depth comes from the shadow**, not from a heavy white fill.
 
-In this tutorial we'll build all three with about 60 lines of CSS and 15 of JavaScript, then make it accessible and touch-friendly. The finished version ships as the `glass` effect in [atelier-fx](https://github.com/4yu5hvy45/atelier-fx) if you want to skip ahead.
+In this tutorial we'll build all three with about 60 lines of CSS and 15 of JavaScript, then make it accessible and touch-friendly. The finished version ships as the `glass` effect in [atelier-fx](https://github.com/ayushbeyond/atelier-fx) if you want to skip ahead.
 
 **What you'll learn:** layered `backdrop-filter`, the mask-composite trick for gradient borders, driving pseudo-elements from CSS custom properties, and degrading gracefully.
 
@@ -191,6 +191,6 @@ All of this, plus cleanup for frameworks, is the `glass` effect in atelier-fx:
 <article data-fx="glass">…</article>
 ```
 
-It's MIT licensed and dependency-free, with eleven more effects in the same spirit. [Live demo](https://4yu5hvy45.github.io/atelier-fx/) · [Source](https://github.com/4yu5hvy45/atelier-fx)
+It's MIT licensed and dependency-free, with eleven more effects in the same spirit. [Live demo](https://ayushbeyond.github.io/atelier-fx/) · [Source](https://github.com/ayushbeyond/atelier-fx)
 
 *Ayush builds websites for premium brands at [Beyond Branding Media](https://thebeyondbranding.com).*

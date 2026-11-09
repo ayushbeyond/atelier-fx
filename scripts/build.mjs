@@ -2,7 +2,7 @@ import { build, transform } from 'esbuild';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { gzipSync } from 'node:zlib';
 
-const banner = '/*! atelier-fx v' + JSON.parse(await readFile('package.json', 'utf8')).version + ' · MIT · github.com/4yu5hvy45/atelier-fx */';
+const banner = '/*! atelier-fx v' + JSON.parse(await readFile('package.json', 'utf8')).version + ' · MIT · github.com/ayushbeyond/atelier-fx */';
 await mkdir('dist', { recursive: true });
 
 const common = { entryPoints: ['src/index.js'], bundle: true, target: 'es2019', banner: { js: banner } };

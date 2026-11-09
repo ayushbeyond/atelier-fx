@@ -5,7 +5,7 @@ Thanks for helping. atelier-fx stays small on purpose, so a few house rules keep
 ## Getting set up
 
 ```bash
-git clone https://github.com/4yu5hvy45/atelier-fx.git
+git clone https://github.com/ayushbeyond/atelier-fx.git
 cd atelier-fx
 npm install
 npm test        # unit tests (Node + jsdom)

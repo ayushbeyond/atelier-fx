@@ -22,13 +22,13 @@
   ],
   "license": "MIT",
   "author": "Beyond Branding Media (https://thebeyondbranding.com)",
-  "homepage": "https://github.com/4yu5hvy45/atelier-fx#readme",
+  "homepage": "https://github.com/ayushbeyond/atelier-fx#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/4yu5hvy45/atelier-fx.git"
+    "url": "git+https://github.com/ayushbeyond/atelier-fx.git"
   },
   "bugs": {
-    "url": "https://github.com/4yu5hvy45/atelier-fx/issues"
+    "url": "https://github.com/ayushbeyond/atelier-fx/issues"
   },
   "type": "module",
   "main": "./dist/atelier-fx.cjs",

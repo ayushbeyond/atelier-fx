@@ -8,7 +8,7 @@
 - **Fast.** Only `transform` and `opacity` animate, and nothing runs until it is on screen
 - **Out of your way.** Effects add classes and CSS variables only, so your styles stay in charge
 
-[**Live demo →**](https://4yu5hvy45.github.io/atelier-fx/)
+[**Live demo →**](https://ayushbeyond.github.io/atelier-fx/)
 
 ## Install
 
@@ -94,7 +94,7 @@ Paste two lines into your site's head code and add a `data-fx` custom attribute 
 
 ## Made with atelier-fx
 
-Using it on a live site? Open a pull request adding it to the showcase on the demo page, or [open an issue](https://github.com/4yu5hvy45/atelier-fx/issues/new?title=Showcase:%20) with the link.
+Using it on a live site? Open a pull request adding it to the showcase on the demo page, or [open an issue](https://github.com/ayushbeyond/atelier-fx/issues/new?title=Showcase:%20) with the link.
 
 ## JavaScript API
 
@@ -122,7 +122,7 @@ Current Chrome, Edge, Safari and Firefox. Liquid glass uses `backdrop-filter`; b
 
 ## Contributing
 
-New effects, fixes and demos are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md). Good first issues are labelled on the [issue tracker](https://github.com/4yu5hvy45/atelier-fx/issues).
+New effects, fixes and demos are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md). Good first issues are labelled on the [issue tracker](https://github.com/ayushbeyond/atelier-fx/issues).
 
 ## Licence
 
