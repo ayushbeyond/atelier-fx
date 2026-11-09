@@ -1,4 +1,5 @@
-# Publishes to npm when a version tag is pushed, e.g. `npm version patch && git push --follow-tags`.
+# Publishes to npm when you publish a GitHub Release (Releases → Draft a new release → tag vX.Y.Z → Publish).
+# The tag must match the version in package.json.
 #
 # First release: uses the NPM_TOKEN repository secret.
 # After that: set up Trusted Publishing on npmjs.com (package → Settings → Trusted publisher →
@@ -6,8 +7,9 @@
 # NPM_TOKEN secret. npm then trusts this workflow directly and no token is needed.
 name: Release
 on:
-  push:
-    tags: ['v*']
+  release:
+    types: [published]
+  workflow_dispatch:
 permissions:
   contents: write
   id-token: write
@@ -27,6 +29,3 @@ jobs:
       - run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - uses: softprops/action-gh-release@v2
-        with:
-          generate_release_notes: true
