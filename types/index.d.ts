@@ -30,6 +30,23 @@ export interface CurtainOptions {
   trigger?: 'view' | 'load';
 }
 
+export interface MarqueeOptions {
+  /** Pixels per second. Default 60. */
+  speed?: number;
+  /** Which way content travels. Default 'left'. */
+  direction?: 'left' | 'right';
+}
+
+export interface ProgressOptions {
+  /** CSS selector of the element to track. Default: the whole page. */
+  target?: string;
+}
+
+export interface CountOptions {
+  /** Seconds the count takes. Default 1.6. */
+  duration?: number;
+}
+
 export interface EffectOptions {
   glass: void;
   draw: DrawOptions;
@@ -38,6 +55,11 @@ export interface EffectOptions {
   spotlight: void;
   tilt: TiltOptions;
   curtain: CurtainOptions;
+  grain: void;
+  marquee: MarqueeOptions;
+  progress: ProgressOptions;
+  count: CountOptions;
+  video: void;
 }
 
 export type EffectName = keyof EffectOptions;
@@ -49,6 +71,11 @@ export function foil(el: HTMLElement): Cleanup;
 export function spotlight(el: HTMLElement): Cleanup;
 export function tilt(el: HTMLElement, opts?: TiltOptions): Cleanup;
 export function curtain(el: HTMLElement, opts?: CurtainOptions): Cleanup;
+export function grain(el: HTMLElement): Cleanup;
+export function marquee(el: HTMLElement, opts?: MarqueeOptions): Cleanup;
+export function progress(el: HTMLElement, opts?: ProgressOptions): Cleanup;
+export function count(el: HTMLElement, opts?: CountOptions): Cleanup;
+export function video(el: HTMLElement): Cleanup;
 
 export const effects: { [K in EffectName]: (el: HTMLElement, opts?: EffectOptions[K]) => Cleanup };
 

@@ -1,7 +1,7 @@
 import { hasDOM } from './core.js';
 import { effects } from './effects.js';
 
-export { glass, draw, reveal, foil, spotlight, tilt, curtain } from './effects.js';
+export { glass, draw, reveal, foil, spotlight, tilt, curtain, grain, marquee, progress, count, video } from './effects.js';
 export { effects };
 
 const registry = new WeakMap(); // element -> Map(effectName -> cleanup)

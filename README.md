@@ -1,9 +1,9 @@
 # atelier-fx
 
-**Crafted motion for premium websites.** Seven hand-finished effects (liquid glass, self-drawing line art, masked reveals, foil text, spotlight, tilt and curtain transitions) that you switch on with one HTML attribute.
+**Crafted motion for premium websites.** Twelve hand-finished effects, from liquid glass and self-drawing line art to film grain and count-up numbers, that you switch on with one HTML attribute.
 
-- **2.5 KB** of JavaScript and **1.4 KB** of CSS, gzipped
-- **No dependencies.** Works with plain HTML, Vite, Next.js, Astro, Webflow embeds, anything
+- **3.7 KB** of JavaScript and **2.1 KB** of CSS, gzipped, for all twelve
+- **No dependencies.** Works with plain HTML, React, Vite, Next.js, Astro, Webflow, Framer, WordPress and Shopify
 - **Kind to every visitor.** Reduced-motion users see the finished page instantly; touch devices skip cursor effects
 - **Fast.** Only `transform` and `opacity` animate, and nothing runs until it is on screen
 - **Out of your way.** Effects add classes and CSS variables only, so your styles stay in charge
@@ -46,6 +46,11 @@ Tune each effect with `data-af-*` attributes or CSS custom properties.
 | `spotlight` | Soft light follows the cursor across a section | `--af-spot-color`, `--af-spot-size` |
 | `tilt` | Card leans toward the cursor with a magnetic pull | `data-af-tilt` (deg), `data-af-pull` (px), `data-af-ease` |
 | `curtain` | Panel pulls away to unveil media, which settles from a zoom | `data-af-direction="up\|down\|left\|right"`, `data-af-trigger="view\|load"`, `--af-curtain-color` |
+| `grain` | Subtle moving film grain over an element (or the whole page on `<body>`) | `--af-grain-opacity`, `--af-grain-size` |
+| `marquee` | Seamless endless ticker that pauses on hover | `data-af-speed` (px/s), `data-af-direction="left\|right"`, `--af-marquee-gap` |
+| `progress` | A thread that fills as you read the page or a section | `data-af-target` (selector), `--af-progress-color`, `--af-progress-height` |
+| `count` | Numbers count up in view, keeping symbols and separators (`₹1,240+`) | `data-af-duration` (seconds) |
+| `video` | Muted background video that plays only on screen, never on data saver or reduced motion | none |
 
 ```html
 <h1 data-fx="reveal">Every seam finished <em>by hand.</em></h1>
@@ -61,7 +66,35 @@ Tune each effect with `data-af-*` attributes or CSS custom properties.
 <figure data-fx="curtain" data-af-direction="left">
   <img src="look-07.jpg" alt="…">
 </figure>
+
+<div data-fx="marquee" data-af-speed="40"><span>ESPERTI</span><span>Soul AV</span>…</div>
+
+<strong data-fx="count">₹1,240+</strong>
+
+<div data-fx="progress" style="position:fixed;inset:0 0 auto"></div>
 ```
+
+## React
+
+```jsx
+import { FX, useFX } from 'atelier-fx/react';
+import 'atelier-fx/style.css';
+
+<FX as="h1" fx="reveal">Every seam finished by hand.</FX>
+<FX fx="tilt spotlight" options={{ tilt: 8 }}>…</FX>
+
+// or as a hook
+const ref = useFX('glass');
+return <div ref={ref}>…</div>;
+```
+
+## Webflow, Framer, WordPress, Shopify
+
+Paste two lines into your site's head code and add a `data-fx` custom attribute to any element. Step-by-step guides: [docs/NO-CODE.md](docs/NO-CODE.md).
+
+## Made with atelier-fx
+
+Using it on a live site? Open a pull request adding it to the showcase on the demo page, or [open an issue](https://github.com/4yu5hvy45/atelier-fx/issues/new?title=Showcase:%20) with the link.
 
 ## JavaScript API
 
@@ -93,4 +126,4 @@ New effects, fixes and demos are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Licence
 
-MIT © [Beyond Branding Media](https://beyondbranding.media)
+MIT © [Beyond Branding Media](https://thebeyondbranding.com)

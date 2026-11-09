@@ -1,7 +1,7 @@
 {
   "name": "atelier-fx",
-  "version": "0.1.0",
-  "description": "Crafted motion for premium websites: liquid glass, self-drawing line art, masked reveals, foil text, spotlight, tilt and curtain transitions. Tiny, dependency-free, one data attribute.",
+  "version": "0.2.0",
+  "description": "Crafted motion for premium websites: liquid glass, self-drawing line art, masked reveals, foil text, spotlight, tilt, curtain, grain, marquee, progress, count-up and smart video. Tiny, dependency-free, one data attribute.",
   "keywords": [
     "animation",
     "scroll-animation",
@@ -14,10 +14,14 @@
     "spotlight",
     "micro-interactions",
     "luxury",
-    "vanilla-js"
+    "vanilla-js",
+    "marquee",
+    "film-grain",
+    "count-up",
+    "react"
   ],
   "license": "MIT",
-  "author": "Beyond Branding Media (https://beyondbranding.media)",
+  "author": "Beyond Branding Media (https://thebeyondbranding.com)",
   "homepage": "https://github.com/4yu5hvy45/atelier-fx#readme",
   "repository": {
     "type": "git",
@@ -38,6 +42,11 @@
       "import": "./dist/atelier-fx.js",
       "require": "./dist/atelier-fx.cjs"
     },
+    "./react": {
+      "types": "./types/react.d.ts",
+      "import": "./dist/react.js",
+      "require": "./dist/react.cjs"
+    },
     "./style.css": "./dist/atelier-fx.css",
     "./package.json": "./package.json"
   },
@@ -56,6 +65,16 @@
   },
   "devDependencies": {
     "esbuild": "^0.24.0",
-    "jsdom": "^25.0.0"
+    "jsdom": "^25.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "peerDependencies": {
+    "react": ">=17"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
   }
 }

@@ -92,3 +92,42 @@ Pick issues in libraries you already use. These were open when this kit was writ
 - [#832](https://github.com/michalsnik/aos/issues/832) horizontal scrollbar caused by AOS (well-discussed, needs a fix)
 
 Aim for one real fix a week. Small, correct and well-tested beats many tiny PRs.
+
+---
+
+# Marketing Beyond Branding with atelier-fx
+
+## Positioning line (use everywhere)
+"Beyond Branding Media, the studio behind atelier-fx, the open-source motion library used by developers worldwide."
+Only say "used by developers worldwide" once there are real installs; until then: "the studio behind atelier-fx, our open-source motion library."
+
+Where it goes: thebeyondbranding.com footer (done on the `add-atelier-fx` branch), LinkedIn headline, proposal cover pages, email signature, Instagram bio.
+
+## In pitches
+- Open every website pitch (HYBEC, MergerOne, Rich By Fifty…) with a 20-second screen recording of the client's own hero using `reveal`, `curtain` and `glass`. It takes about 15 minutes with the CDN tags.
+- Proposal line: "Your site will use atelier-fx, our open-source motion system, so every effect is tested, accessible and fast."
+
+## Instagram content calendar (@thebeyondbranding), 4 weeks
+
+| Week | Reel | Carousel |
+| --- | --- | --- |
+| 1 | "We open-sourced our signature effects" (demo montage) | 7 effects, 1 slide each |
+| 2 | Liquid glass: before → after on a real client hero | How liquid glass works (from the tutorial) |
+| 3 | Haveli template walk-through (Brand My Stay tie-in) | "Why your homestay needs its own website" |
+| 4 | Behind the build: code on one side, the effect on the other | v0.2: five new finishes |
+
+Repurpose each reel for @brandmystay (week 3) and LinkedIn.
+
+## Articles and features
+1. Publish `docs/tutorials/liquid-glass.md` on dev.to and Hashnode (canonical link to GitHub).
+2. Pitch Codrops: email with the live demo and tutorial outline. They take original technique write-ups with demos.
+3. Next tutorials: "Self-drawing SVG line art with pathLength=1", "A seamless marquee without JavaScript measuring".
+
+## Showcase and awards
+- Submit thebeyondbranding.com and the Haveli template to Awwwards (Honorable Mention), CSS Design Awards, Godly, and One Page Love (Haveli fits perfectly).
+- Every client site built with atelier-fx goes on the demo-site showcase, with the client's permission.
+
+## Pro template revenue
+- List Haveli on Gumroad (listing copy in the atelier-fx-pro README).
+- Link "Pro templates" from the demo-site footer once the listing is live.
+- Offer setup as an upsell: template + branding + launch = a Brand My Stay package.

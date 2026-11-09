@@ -1,5 +1,5 @@
 <title>atelier-fx</title>
-<meta name="description" content="Crafted motion for premium websites. Seven effects, one data attribute, 2.5 KB.">
+<meta name="description" content="Crafted motion for premium websites. Twelve effects, one data attribute, 3.7 KB.">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -132,15 +132,58 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 footer { border-top: 1px solid var(--seam); padding-block: 32px; color: var(--mist); font-size: .86rem; }
 footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
 
+/* header thread */
+.thread { height: 2px; --af-progress-color: var(--champagne); margin-bottom: -1px; }
+
+/* five more finishes */
+.finishes { border-top: 1px solid var(--seam); padding-block: clamp(48px, 8vw, 88px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.finishes > * { min-width: 0; }
+.finishes-head { grid-column: 1 / -1; margin-bottom: 12px; }
+.finishes-head h2 { font: 400 var(--step-3)/1.05 var(--display); margin: 14px 0 10px; }
+.finishes-head p { color: var(--mist); margin: 0; }
+.tile { border: 1px solid var(--seam); border-radius: 20px; background: var(--velvet-2); padding: 20px; display: flex; flex-direction: column; gap: 16px; overflow: hidden; }
+.tile--wide { grid-column: 1 / -1; }
+.tile-meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; font-size: .86rem; color: var(--mist); }
+.tile-note { color: var(--mist); font-size: .92rem; margin: 0; max-width: 46ch; }
+.tile .code { margin-top: auto; }
+.ticker { font: italic 400 clamp(1.8rem, 5vw, 2.8rem)/1.2 var(--display); color: var(--silk); padding-block: 6px; --af-marquee-gap: 1.4rem; }
+.ticker .dot { font-style: normal; font-size: .5em; color: var(--champagne); }
+.stats { display: grid; gap: 14px; margin: 0; }
+.stats div { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; border-bottom: 1px solid var(--seam); padding-bottom: 10px; }
+.stats dt { color: var(--mist); font-size: .88rem; }
+.stats dd { margin: 0; font: 400 1.7rem/1 var(--display); color: var(--champagne); font-variant-numeric: tabular-nums; }
+.grain-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex: 1; min-height: 170px; }
+.plate { position: relative; overflow: hidden; border-radius: 12px; background: radial-gradient(80% 90% at 30% 20%, #8a4a6e, transparent 70%), radial-gradient(70% 80% at 90% 100%, #b07b3d, transparent 70%), #24162b; display: flex; align-items: flex-end; padding: 10px; }
+.plate span { position: relative; z-index: 4; font: 400 .74rem/1 var(--mono); color: rgba(246, 241, 248, .85); }
+
+/* showcase */
+.showcase { border-top: 1px solid var(--seam); padding-block: clamp(48px, 8vw, 88px); }
+.showcase h2 { font: 400 var(--step-3)/1.05 var(--display); margin: 0 0 12px; }
+.showcase > p { color: var(--mist); margin: 0 0 24px; max-width: 52ch; }
+.show-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr)); gap: 16px; }
+.show-card { display: flex; gap: 14px; align-items: center; min-height: 120px; padding: 20px; border-radius: 18px; text-decoration: none; color: var(--mist); font-size: .9rem; line-height: 1.4; }
+.show-card strong { color: var(--silk); font-weight: 600; }
+.show-card--open { border: 1px dashed var(--seam); }
+.show-card--open:hover { border-color: var(--champagne); }
+.show-plus { flex: none; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--seam); color: var(--champagne); font-size: 1.3rem; }
+.nocode { color: var(--mist); font-size: .92rem; margin: 28px 0 0; max-width: 70ch; }
+.nocode code { font: 400 .82rem/1 var(--mono); color: var(--silk); }
+.nocode a { color: var(--champagne); }
+
+/* studio line */
+.studio { padding-block: 0 48px; }
+.studio p { margin: 0; color: var(--mist); font-size: .95rem; }
+.studio a { color: var(--silk); text-decoration-color: var(--champagne); text-underline-offset: 3px; }
+
 @media (max-width: 820px) {
-  .fitting, .usage-grid, .promise { grid-template-columns: minmax(0, 1fr); }
+  .fitting, .usage-grid, .promise, .finishes { grid-template-columns: minmax(0, 1fr); }
   .top nav { gap: 14px; }
   .stage { min-height: 260px; }
 }
 @media (max-width: 420px) {
   .swatches { gap: 8px; }
   .swatch { font-size: .68rem; padding: 9px; }
-  .top nav a:nth-child(3) { display: none; }
+  .top nav a:nth-child(n+3) { display: none; }
 }
 </style>
 
@@ -150,23 +193,25 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     <nav aria-label="Primary">
       <a href="#effects">Effects</a>
       <a href="#usage">Usage</a>
+      <a href="#showcase">Showcase</a>
       <a href="https://github.com/4yu5hvy45/atelier-fx">GitHub</a>
     </nav>
   </div>
+  <div class="thread" data-fx="progress" aria-label="Page progress"></div>
 </header>
 
 <main id="top">
   <section class="hero wrap">
     <div class="eyebrow">Open source · MIT</div>
     <h1 data-fx="reveal">Motion, cut <em>to measure.</em></h1>
-    <p class="lede">Seven hand-finished effects for premium websites. Add one attribute to your HTML and ship 2.5 KB of JavaScript.</p>
+    <p class="lede">Twelve hand-finished effects for premium websites. Add one attribute to your HTML and ship 3.7 KB of JavaScript.</p>
     <div class="install">
       <span class="cmd"><span><b>npm</b> i atelier-fx</span><button class="btn btn--solid" type="button" data-copy="npm i atelier-fx">Copy</button></span>
       <a class="btn" href="https://github.com/4yu5hvy45/atelier-fx">Star on GitHub</a>
     </div>
     <div class="spec" aria-label="Specifications">
-      <span><strong>2.5 KB</strong> JS, gzipped</span>
-      <span><strong>1.4 KB</strong> CSS, gzipped</span>
+      <span><strong>3.7 KB</strong> JS, gzipped</span>
+      <span><strong>2.1 KB</strong> CSS, gzipped</span>
       <span><strong>0</strong> dependencies</span>
       <span>Respects <strong>reduced motion</strong> and touch</span>
     </div>
@@ -323,7 +368,66 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 &lt;/figure&gt;</pre></div>
       </div>
     </section>
+
+    <section class="finishes" aria-labelledby="h-finishes">
+      <div class="finishes-head">
+        <div class="attr">New in 0.2</div>
+        <h2 id="h-finishes">Five more finishes</h2>
+        <p>The quieter details that make a page feel expensive.</p>
+      </div>
+
+      <div class="tile tile--wide">
+        <div class="tile-meta"><span class="attr">data-fx="marquee"</span><span>Seamless ticker. Pauses on hover.</span></div>
+        <div class="ticker" data-fx="marquee" data-af-speed="45">
+          <span>Silk faille</span><span class="dot" aria-hidden="true">✦</span>
+          <span>Wool crepe</span><span class="dot" aria-hidden="true">✦</span>
+          <span>Duchesse satin</span><span class="dot" aria-hidden="true">✦</span>
+          <span>Organza</span><span class="dot" aria-hidden="true">✦</span>
+          <span>Cashmere</span><span class="dot" aria-hidden="true">✦</span>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="tile-meta"><span class="attr">data-fx="count"</span><span>Counts up in view, keeps symbols.</span></div>
+        <dl class="stats">
+          <div><dt>Gzipped, all twelve</dt><dd data-fx="count">3.7 KB</dd></div>
+          <div><dt>Hand stitches per gown</dt><dd data-fx="count" data-af-duration="2.2">12,400+</dd></div>
+          <div><dt>Couture price</dt><dd data-fx="count" data-af-duration="2.2">₹4,80,000</dd></div>
+        </dl>
+      </div>
+
+      <div class="tile tile--grain">
+        <div class="tile-meta"><span class="attr">data-fx="grain"</span><span>Moving film grain, pure CSS.</span></div>
+        <div class="grain-pair">
+          <div class="plate"><span>Without</span></div>
+          <div class="plate" data-fx="grain" style="--af-grain-opacity:.22"><span>With grain</span></div>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="tile-meta"><span class="attr">data-fx="progress"</span><span>A thread that fills as you read.</span></div>
+        <p class="tile-note">The champagne line under the header is this effect. Scroll and watch it fill.</p>
+        <div class="code"><button class="btn" type="button" data-copy-next>Copy</button><pre>&lt;div <span class="tk">data-fx="progress"</span>&gt;&lt;/div&gt;</pre></div>
+      </div>
+
+      <div class="tile">
+        <div class="tile-meta"><span class="attr">data-fx="video"</span><span>Plays only on screen.</span></div>
+        <p class="tile-note">Background films pause off-screen and in hidden tabs, and never autoplay on data saver or for reduced-motion visitors. Your hero film stops costing battery.</p>
+        <div class="code"><button class="btn" type="button" data-copy-next>Copy</button><pre>&lt;video <span class="tk">data-fx="video"</span> src="film.mp4" loop&gt;&lt;/video&gt;</pre></div>
+      </div>
+    </section>
   </div>
+
+  <section id="showcase" class="showcase wrap" aria-labelledby="h-showcase">
+    <h2 id="h-showcase">Made with atelier-fx</h2>
+    <p>Sites using atelier-fx appear here. Launched one? Send the link and it goes on the rail.</p>
+    <div class="show-grid">
+      <a class="show-card show-card--open" href="https://github.com/4yu5hvy45/atelier-fx/issues/new?title=Showcase:%20">
+        <span class="show-plus" aria-hidden="true">+</span>
+        <span><strong>Add your site</strong><br>Open a showcase issue on GitHub</span>
+      </a>
+    </div>
+  </section>
 
   <section id="usage" class="usage wrap">
     <h2>Three ways in</h2>
@@ -343,27 +447,32 @@ import 'atelier-fx/style.css';
 init();</pre></div>
       </div>
       <div>
-        <h3>From JavaScript</h3>
-        <p>Apply effects by hand, and clean up when a component unmounts.</p>
-        <div class="code"><button class="btn" type="button" data-copy-next>Copy</button><pre>import { reveal } from 'atelier-fx';
+        <h3>In React</h3>
+        <p>A component and a hook that clean up on unmount.</p>
+        <div class="code"><button class="btn" type="button" data-copy-next>Copy</button><pre>import { FX } from 'atelier-fx/react';
 
-const undo = reveal(heading, { split: 'chars' });
-// later
-undo();</pre></div>
+&lt;FX as="h1" fx="reveal"&gt;
+  Every seam finished by hand.
+&lt;/FX&gt;</pre></div>
       </div>
     </div>
+    <p class="nocode">Building in Webflow, Framer, WordPress or Shopify? Paste the CDN tags into your head code and add <code>data-fx</code> as a custom attribute. <a href="https://github.com/4yu5hvy45/atelier-fx/blob/main/docs/NO-CODE.md">Step-by-step guides</a></p>
     <div class="promise">
       <div><h3>Kind to every visitor</h3><p>Reduced-motion users see the finished page instantly. Touch devices skip cursor effects.</p></div>
       <div><h3>Nothing to fight</h3><p>Effects add classes and CSS variables only, so your own styles stay in charge.</p></div>
       <div><h3>Fast by default</h3><p>Only transforms and opacity animate, and nothing runs until it is on screen.</p></div>
     </div>
   </section>
+
+  <aside class="studio wrap" aria-label="About the makers">
+    <p>Want a whole site that feels like this? <a href="https://thebeyondbranding.com">Beyond Branding Media</a> designs and builds them for premium brands.</p>
+  </aside>
 </main>
 
 <footer>
   <div class="wrap">
     <span>atelier-fx · MIT licence</span>
-    <span>Made by <a href="https://beyondbranding.media">Beyond Branding Media</a></span>
+    <span>Made by <a href="https://thebeyondbranding.com">Beyond Branding Media</a></span>
   </div>
 </footer>
 

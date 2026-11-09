@@ -219,4 +219,176 @@ export function curtain(el, opts = {}) {
   };
 }
 
-export const effects = { glass, draw, reveal, foil, spotlight, tilt, curtain };
+/* ---------------------------------------------------------------- grain */
+// Film grain over an element. Pure CSS (an SVG noise tile that jitters).
+export function grain(el) {
+  el.classList.add('af-grain');
+  return () => el.classList.remove('af-grain');
+}
+
+/* -------------------------------------------------------------- marquee */
+// Endless ticker. Content is cloned once so the loop is seamless.
+export function marquee(el, opts = {}) {
+  const speed = num(el, 'speed', opts.speed ?? 60); // px per second
+  const reverse = str(el, 'direction', opts.direction ?? 'left') === 'right';
+  const original = el.innerHTML;
+
+  const track = document.createElement('div');
+  track.className = 'af-marquee__track';
+  const group = document.createElement('div');
+  group.className = 'af-marquee__group';
+  while (el.firstChild) group.appendChild(el.firstChild);
+  const clone = group.cloneNode(true);
+  clone.setAttribute('aria-hidden', 'true');
+  clone.querySelectorAll('a, button, input, [tabindex]').forEach((n) => n.setAttribute('tabindex', '-1'));
+  track.append(group, clone);
+  el.appendChild(track);
+  el.classList.add('af-marquee');
+  if (reverse) el.classList.add('af-marquee--reverse');
+
+  const setDuration = () => {
+    const w = group.getBoundingClientRect().width;
+    if (w) el.style.setProperty('--af-marquee-duration', (w / speed).toFixed(2) + 's');
+  };
+  setDuration();
+  let ro;
+  if ('ResizeObserver' in window) {
+    ro = new ResizeObserver(setDuration);
+    ro.observe(group);
+  }
+
+  return () => {
+    if (ro) ro.disconnect();
+    el.innerHTML = original;
+    el.classList.remove('af-marquee', 'af-marquee--reverse');
+    el.style.removeProperty('--af-marquee-duration');
+  };
+}
+
+/* ------------------------------------------------------------- progress */
+// A thread that fills as you read. Tracks the page, or the element named in data-af-target.
+export function progress(el, opts = {}) {
+  const sel = str(el, 'target', opts.target ?? '');
+  const target = sel ? document.querySelector(sel) : null;
+  el.classList.add('af-progress');
+  if (!el.hasAttribute('role')) {
+    el.setAttribute('role', 'progressbar');
+    el.setAttribute('aria-valuemin', '0');
+    el.setAttribute('aria-valuemax', '100');
+    el.setAttribute('aria-label', el.getAttribute('aria-label') || 'Reading progress');
+  }
+  let raf = 0;
+  const update = () => {
+    raf = 0;
+    let p;
+    if (target) {
+      const r = target.getBoundingClientRect();
+      const span = r.height - window.innerHeight;
+      p = span > 0 ? -r.top / span : r.top < 0 ? 1 : 0;
+    } else {
+      const span = document.documentElement.scrollHeight - window.innerHeight;
+      p = span > 0 ? window.scrollY / span : 0;
+    }
+    p = Math.min(1, Math.max(0, p));
+    el.style.setProperty('--af-progress', p.toFixed(4));
+    el.setAttribute('aria-valuenow', String(Math.round(p * 100)));
+  };
+  const queue = () => { if (!raf) raf = requestAnimationFrame(update); };
+  update();
+  const off = [listen(window, 'scroll', queue, { passive: true }), listen(window, 'resize', queue)];
+  return () => {
+    off.forEach((f) => f());
+    cancelAnimationFrame(raf);
+    el.classList.remove('af-progress');
+    el.style.removeProperty('--af-progress');
+    ['role', 'aria-valuemin', 'aria-valuemax', 'aria-valuenow', 'aria-label'].forEach((a) => el.removeAttribute(a));
+  };
+}
+
+/* ---------------------------------------------------------------- count */
+// Numbers that count up when they come into view. Keeps prefixes, suffixes,
+// decimals and thousands separators: "₹1,240+" counts 0 → 1,240.
+export function count(el, opts = {}) {
+  const original = el.textContent;
+  const m = original.match(/^(\D*?)(\d[\d,]*(?:\.\d+)?)(.*)$/s);
+  if (!m) return () => {};
+  const [, prefix, raw, suffix] = m;
+  const end = parseFloat(raw.replace(/,/g, ''));
+  const decimals = (raw.split('.')[1] || '').length;
+  const grouped = raw.includes(',');
+  // Keep the author's grouping: Indian lakh/crore style (4,80,000) or Western (480,000).
+  const indian = /^\d{1,2}(,\d{2})+,\d{3}(\.|$)/.test(raw);
+  const duration = num(el, 'duration', opts.duration ?? 1.6) * 1000;
+  const fmt = (v) => {
+    const fixed = v.toFixed(decimals);
+    if (!grouped) return fixed;
+    const [i, d] = fixed.split('.');
+    const g = indian
+      ? i.replace(/(\d)(?=(\d\d)+\d$)/g, '$1,')
+      : i.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return g + (d ? '.' + d : '');
+  };
+
+  el.setAttribute('aria-label', original.trim());
+  el.classList.add('af-count');
+  let raf = 0;
+  let stop = () => {};
+  if (!prefersReducedMotion()) {
+    el.textContent = prefix + fmt(0) + suffix;
+    stop = onceInView(el, () => {
+      const t0 = performance.now();
+      const tick = () => {
+        const t = Math.min(1, (performance.now() - t0) / duration);
+        const eased = 1 - Math.pow(1 - t, 4);
+        el.textContent = prefix + fmt(end * eased) + suffix;
+        if (t < 1) raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+    }, { threshold: 0.5 });
+  }
+  return () => {
+    stop();
+    cancelAnimationFrame(raf);
+    el.textContent = original;
+    el.removeAttribute('aria-label');
+    el.classList.remove('af-count');
+  };
+}
+
+/* ---------------------------------------------------------------- video */
+// Background video that only plays while on screen, and never autoplays for
+// reduced-motion users or visitors on data saver.
+export function video(el) {
+  const v = el.tagName === 'VIDEO' ? el : el.querySelector('video');
+  if (!v) return () => {};
+  v.muted = true;
+  v.playsInline = true;
+  v.setAttribute('muted', '');
+  v.setAttribute('playsinline', '');
+  const saveData = typeof navigator !== 'undefined' && navigator.connection && navigator.connection.saveData;
+  if (prefersReducedMotion() || saveData) {
+    v.pause();
+    return () => {};
+  }
+  if (!('IntersectionObserver' in window)) {
+    const p = v.play();
+    if (p && p.catch) p.catch(() => {});
+    return () => {};
+  }
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting) {
+        const p = v.play();
+        if (p && p.catch) p.catch(() => {});
+      } else v.pause();
+    }
+  }, { threshold: 0.2 });
+  io.observe(v);
+  const vis = listen(document, 'visibilitychange', () => { if (document.hidden) v.pause(); });
+  return () => {
+    io.disconnect();
+    vis();
+  };
+}
+
+export const effects = { glass, draw, reveal, foil, spotlight, tilt, curtain, grain, marquee, progress, count, video };

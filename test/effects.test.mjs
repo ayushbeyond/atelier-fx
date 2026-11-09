@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { JSDOM } from 'jsdom';
 
 // A minimal browser: jsdom plus the APIs it lacks.
+const nodePerf = globalThis.performance;
 let observed;
 function setup({ reduced = false, fine = true } = {}) {
   const dom = new JSDOM('<!doctype html><body></body>', { pretendToBeVisual: true });
@@ -19,6 +20,7 @@ function setup({ reduced = false, fine = true } = {}) {
   };
   w.requestAnimationFrame = (f) => setTimeout(f, 0);
   w.cancelAnimationFrame = (id) => clearTimeout(id);
+  globalThis.performance = nodePerf;
   globalThis.window = w;
   globalThis.document = w.document;
   globalThis.IntersectionObserver = w.IntersectionObserver;
@@ -117,6 +119,80 @@ test('applying an effect twice is a no-op; unknown effects warn instead of throw
   fx.apply(h, 'sparkles');
   console.warn = warn;
   assert.ok(warned);
+});
+
+test('marquee clones content once, hides the clone, and restores on cleanup', () => {
+  document.body.innerHTML = '<div id="m"><span>ESPERTI</span><a href="#">Soul AV</a></div>';
+  const m = document.getElementById('m');
+  const before = m.innerHTML;
+  const undo = fx.marquee(m);
+  const groups = m.querySelectorAll('.af-marquee__group');
+  assert.equal(groups.length, 2);
+  assert.equal(groups[1].getAttribute('aria-hidden'), 'true');
+  assert.equal(groups[1].querySelector('a').getAttribute('tabindex'), '-1');
+  undo();
+  assert.equal(m.innerHTML, before);
+});
+
+test('count keeps prefix, suffix and separators, and finishes on the real value', async () => {
+  document.body.innerHTML = '<span id="c" data-af-duration="0.05">₹1,240+</span>';
+  const c = document.getElementById('c');
+  fx.count(c);
+  assert.equal(c.textContent, '₹0+');
+  assert.equal(c.getAttribute('aria-label'), '₹1,240+');
+  fireAll();
+  await new Promise((r) => setTimeout(r, 200));
+  assert.equal(c.textContent, '₹1,240+');
+});
+
+test('count keeps Indian lakh grouping', async () => {
+  document.body.innerHTML = '<span id="c" data-af-duration="0.05">₹4,80,000</span><span id="d" data-af-duration="0.05">$1,250,000</span>';
+  fx.count(document.getElementById('c'));
+  fx.count(document.getElementById('d'));
+  fireAll();
+  await new Promise((r) => setTimeout(r, 200));
+  assert.equal(document.getElementById('c').textContent, '₹4,80,000');
+  assert.equal(document.getElementById('d').textContent, '$1,250,000');
+});
+
+test('count with reduced motion shows the final value straight away', () => {
+  setup({ reduced: true });
+  document.body.innerHTML = '<span id="c">98.5%</span>';
+  fx.count(document.getElementById('c'));
+  assert.equal(document.getElementById('c').textContent, '98.5%');
+});
+
+test('progress exposes an accessible progressbar', () => {
+  document.body.innerHTML = '<div id="p"></div>';
+  const p = document.getElementById('p');
+  const undo = fx.progress(p);
+  assert.equal(p.getAttribute('role'), 'progressbar');
+  assert.equal(p.getAttribute('aria-valuenow'), '0');
+  undo();
+  assert.equal(p.getAttribute('role'), null);
+});
+
+test('video plays only in view and stays paused for reduced motion', () => {
+  document.body.innerHTML = '<video id="v"></video>';
+  const v = document.getElementById('v');
+  let played = 0, paused = 0;
+  v.play = () => { played++; return Promise.resolve(); };
+  v.pause = () => { paused++; };
+  fx.video(v);
+  assert.ok(v.muted);
+  assert.equal(played, 0);
+  fireAll();
+  assert.equal(played, 1);
+
+  setup({ reduced: true });
+  document.body.innerHTML = '<video id="v"></video>';
+  const v2 = document.getElementById('v');
+  let played2 = 0;
+  v2.play = () => { played2++; return Promise.resolve(); };
+  v2.pause = () => {};
+  fx.video(v2);
+  fireAll();
+  assert.equal(played2, 0);
 });
 
 test('destroy removes effects from descendants', () => {

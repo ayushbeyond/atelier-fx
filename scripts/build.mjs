@@ -18,3 +18,11 @@ await writeFile('dist/atelier-fx.min.css', banner + '\n' + min.code);
 const js = await readFile('dist/atelier-fx.min.js');
 const kb = (b) => (b.length / 1024).toFixed(1) + ' KB';
 console.log(`min.js ${kb(js)} (${kb(gzipSync(js))} gzip) · min.css ${kb(Buffer.from(min.code))} (${kb(gzipSync(min.code))} gzip)`);
+
+// React bindings, with react left external and the core shared via the package entry.
+const reactCommon = { entryPoints: ['src/react.js'], bundle: true, target: 'es2019', external: ['react', './index.js'], banner: { js: banner } };
+await build({ ...reactCommon, format: 'esm', outfile: 'dist/react.js', plugins: [rewriteCore('./atelier-fx.js')] });
+await build({ ...reactCommon, format: 'cjs', outfile: 'dist/react.cjs', plugins: [rewriteCore('./atelier-fx.cjs')] });
+function rewriteCore(to) {
+  return { name: 'core', setup(b) { b.onResolve({ filter: /^\.\/index\.js$/ }, () => ({ path: to, external: true })); } };
+}
