@@ -1,0 +1,61 @@
+{
+  "name": "atelier-fx",
+  "version": "0.1.0",
+  "description": "Crafted motion for premium websites: liquid glass, self-drawing line art, masked reveals, foil text, spotlight, tilt and curtain transitions. Tiny, dependency-free, one data attribute.",
+  "keywords": [
+    "animation",
+    "scroll-animation",
+    "reveal",
+    "glassmorphism",
+    "liquid-glass",
+    "svg-draw",
+    "text-animation",
+    "tilt",
+    "spotlight",
+    "micro-interactions",
+    "luxury",
+    "vanilla-js"
+  ],
+  "license": "MIT",
+  "author": "Beyond Branding Media (https://beyondbranding.media)",
+  "homepage": "https://github.com/4yu5hvy45/atelier-fx#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/4yu5hvy45/atelier-fx.git"
+  },
+  "bugs": {
+    "url": "https://github.com/4yu5hvy45/atelier-fx/issues"
+  },
+  "type": "module",
+  "main": "./dist/atelier-fx.cjs",
+  "module": "./dist/atelier-fx.js",
+  "types": "./types/index.d.ts",
+  "unpkg": "./dist/atelier-fx.min.js",
+  "jsdelivr": "./dist/atelier-fx.min.js",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./dist/atelier-fx.js",
+      "require": "./dist/atelier-fx.cjs"
+    },
+    "./style.css": "./dist/atelier-fx.css",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "dist",
+    "types"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test test/*.test.mjs",
+    "demo": "node scripts/build.mjs && node scripts/demo.mjs",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0",
+    "jsdom": "^25.0.0"
+  }
+}
