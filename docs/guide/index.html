@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The $3,000 Website Guide · Beyond Branding Media</title>
+<meta name="description" content="A free, step-by-step guide to building a premium personal website in one afternoon. No code, no cost. By Beyond Branding Media.">
+<meta property="og:title" content="The $3,000 Website Guide">
+<meta property="og:description" content="Build a premium personal website in one afternoon. Free template, free hosting, no code.">
+<meta property="og:image" content="https://ayushbeyond.github.io/atelier-fx/guide/preview.jpg">
+<meta name="theme-color" content="#f7f5f2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/atelier-fx@0.2.0/dist/atelier-fx.min.css">
+<script src="https://cdn.jsdelivr.net/npm/atelier-fx@0.2.0" defer></script>
+<style>
+/* Layout: a hand-written letter that turns into a recipe card. One narrow column, read on a phone straight from an Instagram DM. */
+:root {
+  --paper: #f7f5f2; --card: #ffffff; --ink: #16151a; --soft: #67636c; --line: #e4e0db; --red: #d91c2b; --green: #27a35a;
+  --serif: "Instrument Serif", Georgia, serif; --sans: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 1.0625rem/1.65 var(--sans); -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+img { display: block; max-width: 100%; height: auto; }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+.col { max-width: 720px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.eyebrow { font: 600 .74rem/1 var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--red); }
+h1, h2, h3 { font-weight: 400; text-wrap: balance; }
+.thread { position: fixed; top: 0; left: 0; right: 0; z-index: 20; --af-progress-color: var(--red); height: 3px; }
+
+/* top */
+.top { padding-block: 22px 0; display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: .9rem; color: var(--soft); }
+.top b { color: var(--ink); font: 400 1.25rem/1 var(--serif); }
+.hero { padding-block: clamp(40px, 9vw, 88px) 28px; }
+.hero h1 { font: 400 clamp(3rem, 12vw, 6rem)/.95 var(--serif); letter-spacing: -.02em; margin: 16px 0 22px; }
+.hero h1 em { color: var(--red); }
+.hero p { font-size: 1.2rem; color: var(--soft); margin: 0; max-width: 34ch; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+.facts span { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 7px 14px; font-size: .9rem; }
+.facts span::before { content: "✓ "; color: var(--green); font-weight: 600; }
+
+/* preview */
+.preview { margin-block: 34px 10px; border-radius: 18px; overflow: hidden; background: var(--card); box-shadow: 0 30px 70px -40px rgba(22,21,26,.45), 0 0 0 1px rgba(22,21,26,.06); --af-curtain-color: var(--ink); }
+.preview .bar { display: flex; gap: 6px; padding: 11px 14px; border-bottom: 1px solid var(--line); }
+.preview .bar i { width: 10px; height: 10px; border-radius: 50%; background: #e2ddd7; }
+.preview .bar span { margin-left: 10px; font-size: .78rem; color: var(--soft); }
+.cap { text-align: center; color: var(--soft); font-size: .9rem; margin: 10px 0 0; }
+
+/* letter */
+.letter { padding-block: 56px 20px; }
+.letter p { font: 400 1.32rem/1.55 var(--serif); margin: 0 0 18px; }
+.letter .sign { font: italic 400 1.6rem/1 var(--serif); margin-top: 26px; }
+.letter .sign small { display: block; font: 400 .9rem/1.4 var(--sans); color: var(--soft); margin-top: 8px; }
+
+/* steps */
+.steps { padding-block: 40px 20px; display: grid; gap: 22px; }
+.step { background: var(--card); border-radius: 22px; padding: clamp(22px, 5vw, 36px); box-shadow: 0 0 0 1px rgba(22,21,26,.06); }
+.step-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 10px; }
+.num { font: 400 2.8rem/1 var(--serif); color: var(--red); flex: none; }
+.step h2 { font: 400 clamp(1.8rem, 6vw, 2.4rem)/1.05 var(--serif); margin: 0; }
+.time { display: inline-block; font-size: .8rem; color: var(--soft); border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; margin-bottom: 12px; }
+.step p { margin: 0 0 14px; color: #34323a; }
+.step ol, .step ul { margin: 0 0 14px; padding-left: 1.2em; }
+.step li { margin-bottom: 8px; }
+.step li::marker { color: var(--red); font-weight: 600; }
+.note { background: #fbf3e8; border-radius: 14px; padding: 14px 16px; font-size: .95rem; color: #5b4a33; margin-top: 6px; }
+.note b { color: #3e3122; }
+.btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; padding: 14px 22px; border-radius: 999px; font-weight: 600; font-size: 1rem; border: 1px solid var(--ink); }
+.btn.primary { background: var(--ink); color: #fff; }
+.btn.primary:hover { background: var(--red); border-color: var(--red); }
+.btn.ghost:hover { background: var(--ink); color: #fff; }
+code { font: 400 .9em/1 var(--mono); background: #f2efeb; border-radius: 6px; padding: 2px 6px; }
+.edits { display: grid; gap: 0; margin: 4px 0 14px; padding: 0; list-style: none; }
+.edits li { display: grid; grid-template-columns: 1.5em minmax(0, 1fr); gap: 10px; padding: 12px 0; border-top: 1px solid var(--line); margin: 0; }
+.edits li::before { content: "✏️"; }
+.edits b { font-weight: 600; }
+
+/* effects */
+.fx-list { display: grid; gap: 10px; margin: 6px 0 14px; }
+.fx { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; }
+.fx div { min-width: 0; }
+.fx b { display: block; font-weight: 600; }
+.fx span { color: var(--soft); font-size: .92rem; }
+.fx code { display: inline-block; margin-top: 6px; white-space: nowrap; overflow-x: auto; max-width: 100%; }
+.copy { appearance: none; border: 1px solid var(--line); background: var(--paper); border-radius: 999px; padding: 8px 14px; font: 600 .85rem/1 var(--sans); cursor: pointer; color: var(--ink); }
+.copy:hover { border-color: var(--ink); }
+
+/* community */
+.together { margin-block: 40px; background: var(--ink); color: #f2efea; border-radius: 26px; padding: clamp(28px, 6vw, 48px); --af-spot-color: rgba(217,28,43,.25); }
+.together h2 { font: 400 clamp(2.2rem, 8vw, 3.4rem)/1 var(--serif); margin: 12px 0 16px; }
+.together h2 em { color: #ff6b5e; }
+.together p { color: #c9c4cf; margin: 0 0 14px; }
+.together .tag { font: 400 1.6rem/1 var(--serif); color: #fff; }
+.done { padding-block: 10px 60px; text-align: center; }
+.done h2 { font: 400 clamp(2rem, 7vw, 3rem)/1.05 var(--serif); margin: 0 0 12px; }
+.done p { color: var(--soft); max-width: 40ch; margin: 0 auto 22px; }
+footer { border-top: 1px solid var(--line); padding-block: 24px 40px; font-size: .85rem; color: var(--soft); }
+footer .col { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; }
+</style>
+</head>
+<body>
+<div class="thread" data-fx="progress" aria-label="Reading progress"></div>
+
+<div class="col top"><b>Beyond Branding Media</b><span>Free guide · 2026</span></div>
+
+<main>
+  <section class="col hero">
+    <div class="eyebrow">Free for every creator</div>
+    <h1 data-fx="reveal">The <em>$3,000</em> website, built by you.</h1>
+    <p>A premium personal website in one afternoon. The template, the effects and every step. No code, no cost.</p>
+    <div class="facts"><span>Free forever</span><span>No coding</span><span>Free hosting</span><span>About 1 hour</span></div>
+    <figure class="preview" data-fx="curtain" data-af-direction="up" style="margin-inline:0">
+      <div class="bar"><i></i><i></i><i></i><span>yourname.netlify.app</span></div>
+      <img src="preview.jpg" alt="Preview of the portfolio website you'll build: a large serif headline, project grid and contact section" width="1280" height="800">
+    </figure>
+    <p class="cap">This is what you'll have by tonight. <a href="portfolio/">Open the live preview →</a></p>
+  </section>
+
+  <section class="col letter" aria-label="A note from Ayush">
+    <div class="eyebrow">Why this is free</div>
+    <p style="margin-top:18px">Clients pay studios like ours around $3,000 for a website like this.</p>
+    <p>But the people who need one most, creators and freelancers just getting started, usually can't spend that yet. And without a proper website, great work gets overlooked.</p>
+    <p>So here is everything we use: the template, the motion and the exact steps. Take it, make it yours, and go get the clients you deserve.</p>
+    <p class="sign">Ayush<small>Founder, Beyond Branding Media</small></p>
+  </section>
+
+  <section class="col steps" aria-label="Steps">
+    <article class="step">
+      <div class="step-head"><span class="num">1</span><h2>Get the template</h2></div>
+      <span class="time">2 minutes</span>
+      <p>Download it on a laptop or desktop. You'll edit it there. If you're on your phone, send this page to yourself for later.</p>
+      <div class="btns">
+        <a class="btn primary" href="creator-portfolio-template.zip" download>Download free template ↓</a>
+        <a class="btn ghost" href="portfolio/">See it live</a>
+      </div>
+      <div class="note">Unzip it and you'll find one file, <b>index.html</b>. That one file is your whole website.</div>
+    </article>
+
+    <article class="step">
+      <div class="step-head"><span class="num">2</span><h2>Make it yours</h2></div>
+      <span class="time">30–45 minutes</span>
+      <p>Open <code>index.html</code> in a free text editor. <a href="https://code.visualstudio.com/">VS Code</a> is best; Notepad (Windows) or TextEdit (Mac) also work. Search for <b>✏️ EDIT</b> and change each spot:</p>
+      <ul class="edits">
+        <li><span><b>Your name</b>: in the title, the top-left logo and the footer</span></li>
+        <li><span><b>Your headline</b>: one line on what you do and for whom</span></li>
+        <li><span><b>Your colour</b>: change <code>--accent</code> to your brand colour</span></li>
+        <li><span><b>Your work</b>: four projects with a name and what you did</span></li>
+        <li><span><b>Your photos</b>: put images in an <code>images</code> folder and swap each placeholder for <code>&lt;img src="images/work.jpg"&gt;</code></span></li>
+        <li><span><b>Your story and numbers</b>: two short paragraphs and three numbers</span></li>
+        <li><span><b>Your email and socials</b>: so people can actually hire you</span></li>
+      </ul>
+      <p>Save, then double-click <code>index.html</code> to see it in your browser. Repeat until you love it.</p>
+      <div class="note"><b>Photo tip:</b> export work at 1600 px wide and shrink it for free at <a href="https://squoosh.app">squoosh.app</a>. Fast sites feel more premium.</div>
+    </article>
+
+    <article class="step">
+      <div class="step-head"><span class="num">3</span><h2>Put it online, free</h2></div>
+      <span class="time">5 minutes</span>
+      <ol>
+        <li>Go to <a href="https://app.netlify.com/drop"><b>app.netlify.com/drop</b></a></li>
+        <li>Drag your whole website folder onto the page</li>
+        <li>You get a live link in seconds. Create a free account and <b>claim</b> the site so it stays online.</li>
+        <li>In <b>Site settings</b>, change the name to <b>yourname.netlify.app</b></li>
+      </ol>
+      <div class="note"><b>Want your own domain?</b> Buy <code>yourname.com</code> from any domain seller (usually under ₹1,000 a year) and connect it in Netlify's <b>Domain management</b>.</div>
+    </article>
+
+    <article class="step">
+      <div class="step-head"><span class="num">4</span><h2>Add the premium feel</h2></div>
+      <span class="time">Optional · 10 minutes</span>
+      <p>The motion is already on. To add it anywhere else, copy an attribute and paste it inside any tag, like <code>&lt;h2 data-fx="reveal"&gt;</code>.</p>
+      <div class="fx-list">
+        <div class="fx"><div><b>Rising text</b><span>Words rise into place as you scroll</span><br><code>data-fx="reveal"</code></div><button class="copy" type="button" data-copy='data-fx="reveal"'>Copy</button></div>
+        <div class="fx"><div><b>Curtain reveal</b><span>A panel slides away to unveil a photo</span><br><code>data-fx="curtain"</code></div><button class="copy" type="button" data-copy='data-fx="curtain"'>Copy</button></div>
+        <div class="fx"><div><b>Liquid glass</b><span>Frosted card with light that follows the cursor</span><br><code>data-fx="glass"</code></div><button class="copy" type="button" data-copy='data-fx="glass"'>Copy</button></div>
+        <div class="fx"><div><b>Tilt</b><span>Cards lean toward the cursor</span><br><code>data-fx="tilt"</code></div><button class="copy" type="button" data-copy='data-fx="tilt"'>Copy</button></div>
+        <div class="fx"><div><b>Count up</b><span>Numbers count up when seen</span><br><code>data-fx="count"</code></div><button class="copy" type="button" data-copy='data-fx="count"'>Copy</button></div>
+        <div class="fx"><div><b>Ticker</b><span>An endless scrolling line of words</span><br><code>data-fx="marquee"</code></div><button class="copy" type="button" data-copy='data-fx="marquee"'>Copy</button></div>
+        <div class="fx"><div><b>Film grain</b><span>Subtle texture over images</span><br><code>data-fx="grain"</code></div><button class="copy" type="button" data-copy='data-fx="grain"'>Copy</button></div>
+      </div>
+      <p>All twelve effects are explained in the <a href="../">atelier-fx demo</a>, our free open-source library.</p>
+    </article>
+
+    <article class="step">
+      <div class="step-head"><span class="num">5</span><h2>Share it everywhere</h2></div>
+      <span class="time">5 minutes</span>
+      <ul>
+        <li>Put the link in your <b>Instagram bio</b> and <b>LinkedIn</b> profile</li>
+        <li>Add it to your email signature and your DMs to clients</li>
+        <li>Send it in every pitch. A real website gets you taken seriously.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="col">
+    <div class="together" data-fx="spotlight">
+      <div class="eyebrow" style="color:#ff6b5e">Let's grow together</div>
+      <h2>Built yours? <em>Show us.</em></h2>
+      <p>Share your new website on Instagram and tag us. We'll feature our favourites in our stories, so your work gets seen by more people.</p>
+      <p class="tag">@thebeyondbranding</p>
+    </div>
+  </section>
+
+  <section class="col done">
+    <h2>Rather have it done for you?</h2>
+    <p>We design and build premium websites for brands and creators.</p>
+    <a class="btn primary" href="https://thebeyondbranding.com">thebeyondbranding.com</a>
+  </section>
+</main>
+
+<footer>
+  <div class="col">
+    <span>© 2026 Beyond Branding Media</span>
+    <span>Motion by <a href="https://github.com/ayushbeyond/atelier-fx">atelier-fx</a> (free and open source)</span>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('click', function (e) {
+  var b = e.target.closest('.copy'); if (!b) return;
+  var t = b.getAttribute('data-copy'), done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1400); };
+  try { navigator.clipboard.writeText(t).then(done, function () { b.textContent = 'Select it'; }); } catch (err) { b.textContent = 'Select it'; }
+});
+</script>
+</body>
+</html>

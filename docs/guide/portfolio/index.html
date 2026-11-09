@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- ✏️ EDIT: your name and one line about you (shows in Google and in link previews) -->
+<title>Mira Kapoor · Designer & Creator</title>
+<meta name="description" content="Mira Kapoor designs brands, content and campaigns for people who want to be remembered.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<!-- The motion comes from atelier-fx, a free open-source library: github.com/ayushbeyond/atelier-fx -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/atelier-fx@0.2.0/dist/atelier-fx.min.css">
+<script src="https://cdn.jsdelivr.net/npm/atelier-fx@0.2.0" defer></script>
+<style>
+/* ✏️ EDIT: your colours. Change --accent to your brand colour. */
+:root {
+  --paper: #f7f5f2;
+  --ink: #16151a;
+  --soft: #6d6a72;
+  --line: #e3dfda;
+  --accent: #d6452c;
+  --serif: "Instrument Serif", Georgia, serif;
+  --sans: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 1.0625rem/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+img { display: block; max-width: 100%; height: auto; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.wrap { max-width: 1200px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.eyebrow { font: 500 .78rem/1 var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--soft); }
+
+/* nav */
+.nav { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--paper) 86%, transparent); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+.nav .wrap { display: flex; justify-content: space-between; align-items: center; padding-block: 18px; gap: 16px; }
+.logo { font: 400 1.6rem/1 var(--serif); text-decoration: none; }
+.nav nav { display: flex; gap: 28px; font-size: .95rem; }
+.nav nav a { text-decoration: none; color: var(--soft); }
+.nav nav a:hover { color: var(--ink); }
+.thread { --af-progress-color: var(--accent); height: 2px; }
+
+/* hero */
+.hero { padding-block: clamp(56px, 10vw, 120px) clamp(40px, 6vw, 72px); }
+.status { display: inline-flex; align-items: center; gap: 10px; font-size: .9rem; color: var(--soft); border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; background: #fff; }
+.status i { width: 8px; height: 8px; border-radius: 50%; background: #27a35a; box-shadow: 0 0 0 4px rgba(39,163,90,.15); }
+.hero h1 { font: 400 clamp(3.2rem, 11vw, 9.5rem)/.92 var(--serif); letter-spacing: -.025em; margin: 28px 0 28px; }
+.hero h1 em { color: var(--accent); }
+.hero .lede { font-size: clamp(1.1rem, 2vw, 1.35rem); color: var(--soft); max-width: 36ch; margin: 0; }
+.hero-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 28px; }
+.btn { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: var(--paper); text-decoration: none; padding: 16px 26px; border-radius: 999px; font-weight: 500; }
+.btn:hover { background: var(--accent); }
+
+/* clients ticker */
+.ticker { border-block: 1px solid var(--line); padding-block: 22px; font: 400 clamp(1.4rem, 3vw, 2rem)/1 var(--serif); color: var(--soft); --af-marquee-gap: 2.4rem; }
+.ticker em { color: var(--accent); font-style: normal; }
+
+/* work */
+.work { padding-block: clamp(64px, 10vw, 120px); }
+.section-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; margin-bottom: 36px; }
+.section-head h2 { font: 400 clamp(2.4rem, 6vw, 4.4rem)/1 var(--serif); margin: 12px 0 0; letter-spacing: -.02em; }
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px; }
+.project { grid-column: span 6; text-decoration: none; display: block; }
+.project:nth-child(1) { grid-column: span 7; }
+.project:nth-child(2) { grid-column: span 5; }
+.project:nth-child(3) { grid-column: span 5; }
+.project:nth-child(4) { grid-column: span 7; }
+.shot { position: relative; border-radius: 18px; aspect-ratio: 4 / 3; width: 100%; max-width: 100%; overflow: hidden; --af-curtain-color: var(--ink); }
+.shot img, .shot .art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* ✏️ EDIT: replace each .art block with <img src="images/your-work.jpg" alt="..."> */
+.art-1 { background: radial-gradient(60% 70% at 30% 30%, #f3b07a, transparent 70%), radial-gradient(60% 70% at 80% 80%, #d6452c, transparent 70%), #2a1a24; }
+.art-2 { background: radial-gradient(70% 60% at 70% 20%, #9fc2d8, transparent 70%), radial-gradient(60% 70% at 20% 90%, #3b4f8f, transparent 70%), #e9e3da; }
+.art-3 { background: conic-gradient(from 120deg at 60% 55%, #16151a, #3d3a48, #c9b8a6, #16151a); }
+.art-4 { background: radial-gradient(50% 60% at 50% 45%, #fff3d6, transparent 70%), linear-gradient(160deg, #e7c9a5, #b9785a 60%, #4c2a2a); }
+.art .mark { position: absolute; left: 22px; bottom: 18px; font: italic 400 2.2rem/1 var(--serif); color: rgba(255,255,255,.92); text-shadow: 0 2px 20px rgba(0,0,0,.25); }
+.meta { display: flex; justify-content: space-between; gap: 12px; margin-top: 14px; }
+.meta b { font-weight: 500; }
+.meta span { color: var(--soft); }
+
+/* about */
+.about { background: var(--ink); color: #f1eee9; --af-spot-color: rgba(214, 69, 44, .22); --af-spot-size: 640px; }
+.about .wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(36px, 7vw, 110px); padding-block: clamp(72px, 11vw, 140px); align-items: start; }
+.about .eyebrow { color: #a19da8; }
+.about h2 { font: 400 clamp(2.2rem, 5vw, 3.8rem)/1.05 var(--serif); margin: 14px 0 24px; letter-spacing: -.015em; }
+.about p { color: #c7c2cc; margin: 0 0 16px; max-width: 48ch; }
+.stats { display: grid; gap: 0; margin: 0; }
+.stats div { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 22px 0; border-bottom: 1px solid rgba(241,238,233,.14); }
+.stats dt { color: #a19da8; }
+.stats dd { margin: 0; font: 400 clamp(2.4rem, 5vw, 3.4rem)/1 var(--serif); font-variant-numeric: tabular-nums; }
+.services { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.services li { border: 1px solid rgba(241,238,233,.22); border-radius: 999px; padding: 7px 14px; font-size: .9rem; color: #e3dfe6; }
+
+/* contact */
+.contact { padding-block: clamp(72px, 11vw, 140px); text-align: center; }
+.contact h2 { font: 400 clamp(3rem, 10vw, 8rem)/.95 var(--serif); letter-spacing: -.025em; margin: 18px 0 30px; }
+.contact h2 em { color: var(--accent); }
+.mail { display: inline-block; font: 400 clamp(1.3rem, 3vw, 2rem)/1.2 var(--serif); padding: 18px 30px; border-radius: 18px; text-decoration: none; color: var(--ink);
+  --af-glass-tint: rgba(255,255,255,.55); --af-glass-edge: rgba(22,21,26,.12); --af-glass-sheen: rgba(214,69,44,.18); --af-glass-radius: 18px; }
+.socials { display: flex; justify-content: center; gap: 22px; margin-top: 30px; color: var(--soft); }
+footer { border-top: 1px solid var(--line); padding-block: 26px 40px; color: var(--soft); font-size: .85rem; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; }
+
+@media (max-width: 860px) {
+  .project, .project:nth-child(n) { grid-column: 1 / -1; }
+  .about .wrap { grid-template-columns: minmax(0, 1fr); }
+  .nav nav a:not(:last-child) { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <!-- ✏️ EDIT: your name -->
+    <a class="logo" href="#top">Mira Kapoor</a>
+    <nav aria-label="Primary"><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+  </div>
+  <div class="thread" data-fx="progress" aria-label="Page progress"></div>
+</header>
+
+<main id="top">
+  <section class="hero wrap">
+    <!-- ✏️ EDIT: your availability -->
+    <span class="status"><i></i>Booking projects for January</span>
+    <!-- ✏️ EDIT: your headline. Keep the <em> around the word you want in colour. -->
+    <h1 data-fx="reveal">Designer &amp; creator making brands <em>unforgettable.</em></h1>
+    <div class="hero-row">
+      <p class="lede">I design identities, content and campaigns for founders and creators who want to be remembered.</p>
+      <a class="btn" href="#contact">Start a project →</a>
+    </div>
+  </section>
+
+  <!-- ✏️ EDIT: brands you've worked with, or what you do -->
+  <div class="ticker" data-fx="marquee" data-af-speed="40" aria-label="Clients and work">
+    <span>Brand identity</span><em>✦</em><span>Content strategy</span><em>✦</em><span>Campaigns</span><em>✦</em><span>Packaging</span><em>✦</em><span>Art direction</span><em>✦</em><span>Social design</span><em>✦</em>
+  </div>
+
+  <section id="work" class="work wrap">
+    <div class="section-head">
+      <div><div class="eyebrow">Selected work · 2024–2026</div><h2 data-fx="reveal">Things I'm proud of</h2></div>
+      <p style="color:var(--soft);max-width:34ch;margin:0">Four projects, start to finish. Ask me about the rest.</p>
+    </div>
+    <div class="grid">
+      <!-- ✏️ EDIT: each project. Swap the .art block for <img src="images/project.jpg" alt="..."> -->
+      <a class="project" href="#contact" data-fx="tilt" data-af-tilt="3" data-af-pull="4">
+        <figure class="shot" data-fx="curtain" data-af-direction="up" style="margin:0"><div class="art art-1" data-fx="grain"><span class="mark">Ember</span></div></figure>
+        <div class="meta"><b>Ember Coffee</b><span>Identity · Packaging</span></div>
+      </a>
+      <a class="project" href="#contact" data-fx="tilt" data-af-tilt="3" data-af-pull="4">
+        <figure class="shot" data-fx="curtain" data-af-direction="up" style="margin:0"><div class="art art-2" data-fx="grain"><span class="mark">Tide</span></div></figure>
+        <div class="meta"><b>Tide Studio</b><span>Campaign</span></div>
+      </a>
+      <a class="project" href="#contact" data-fx="tilt" data-af-tilt="3" data-af-pull="4">
+        <figure class="shot" data-fx="curtain" data-af-direction="up" style="margin:0"><div class="art art-3" data-fx="grain"><span class="mark">Nocturne</span></div></figure>
+        <div class="meta"><b>Nocturne</b><span>Album art · Motion</span></div>
+      </a>
+      <a class="project" href="#contact" data-fx="tilt" data-af-tilt="3" data-af-pull="4">
+        <figure class="shot" data-fx="curtain" data-af-direction="up" style="margin:0"><div class="art art-4" data-fx="grain"><span class="mark">Golden Hour</span></div></figure>
+        <div class="meta"><b>Golden Hour Skincare</b><span>Content · Social</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section id="about" class="about" data-fx="spotlight">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">About</div>
+        <!-- ✏️ EDIT: your story in two short paragraphs -->
+        <h2 data-fx="reveal">Hi, I'm Mira. I make small brands feel big.</h2>
+        <p>I started designing logos for friends' side projects. Six years later, I help founders and creators turn what they love into brands people remember.</p>
+        <p>I work with a few clients at a time, so every project gets my full attention.</p>
+        <ul class="services"><li>Brand identity</li><li>Instagram content</li><li>Packaging</li><li>Websites</li></ul>
+      </div>
+      <!-- ✏️ EDIT: your numbers -->
+      <dl class="stats">
+        <div><dt>Brands designed</dt><dd data-fx="count">48</dd></div>
+        <div><dt>Years creating</dt><dd data-fx="count">6</dd></div>
+        <div><dt>Followers across platforms</dt><dd data-fx="count">12,400+</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="contact" class="contact wrap">
+    <div class="eyebrow">Contact</div>
+    <h2 data-fx="reveal">Let's make something <em>good.</em></h2>
+    <!-- ✏️ EDIT: your email -->
+    <a class="mail" href="mailto:hello@yourname.com" data-fx="glass">hello@yourname.com</a>
+    <!-- ✏️ EDIT: your social links -->
+    <div class="socials"><a href="https://instagram.com/">Instagram</a><a href="https://linkedin.com/">LinkedIn</a><a href="https://behance.net/">Behance</a></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Mira Kapoor</span>
+    <span>Template by <a href="https://thebeyondbranding.com">Beyond Branding Media</a> · motion by <a href="https://github.com/ayushbeyond/atelier-fx">atelier-fx</a></span>
+  </div>
+</footer>
+</body>
+</html>
