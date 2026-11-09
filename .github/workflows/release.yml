@@ -1,5 +1,9 @@
-# Publishes to npm when you push a version tag, e.g. `npm version patch && git push --follow-tags`.
-# Needs an NPM_TOKEN secret (npm → Access Tokens → Granular, publish rights for atelier-fx).
+# Publishes to npm when a version tag is pushed, e.g. `npm version patch && git push --follow-tags`.
+#
+# First release: uses the NPM_TOKEN repository secret.
+# After that: set up Trusted Publishing on npmjs.com (package → Settings → Trusted publisher →
+# GitHub Actions, owner ayushbeyond, repo atelier-fx, workflow release.yml), then delete the
+# NPM_TOKEN secret. npm then trusts this workflow directly and no token is needed.
 name: Release
 on:
   push:
@@ -17,6 +21,8 @@ jobs:
           node-version: 22
           registry-url: https://registry.npmjs.org
           cache: npm
+      # Trusted Publishing needs npm 11.5 or newer.
+      - run: npm install -g npm@11
       - run: npm ci
       - run: npm publish --provenance --access public
         env:
