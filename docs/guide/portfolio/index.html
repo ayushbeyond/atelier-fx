@@ -66,13 +66,7 @@ img { display: block; max-width: 100%; height: auto; }
 .project:nth-child(3) { grid-column: span 5; }
 .project:nth-child(4) { grid-column: span 7; }
 .shot { position: relative; border-radius: 18px; aspect-ratio: 4 / 3; width: 100%; max-width: 100%; overflow: hidden; --af-curtain-color: var(--ink); }
-.shot img, .shot .art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-/* ✏️ EDIT: replace each .art block with <img src="images/your-work.jpg" alt="..."> */
-.art-1 { background: radial-gradient(60% 70% at 30% 30%, #f3b07a, transparent 70%), radial-gradient(60% 70% at 80% 80%, #d6452c, transparent 70%), #2a1a24; }
-.art-2 { background: radial-gradient(70% 60% at 70% 20%, #9fc2d8, transparent 70%), radial-gradient(60% 70% at 20% 90%, #3b4f8f, transparent 70%), #e9e3da; }
-.art-3 { background: conic-gradient(from 120deg at 60% 55%, #16151a, #3d3a48, #c9b8a6, #16151a); }
-.art-4 { background: radial-gradient(50% 60% at 50% 45%, #fff3d6, transparent 70%), linear-gradient(160deg, #e7c9a5, #b9785a 60%, #4c2a2a); }
-.art .mark { position: absolute; left: 22px; bottom: 18px; font: italic 400 2.2rem/1 var(--serif); color: rgba(255,255,255,.92); text-shadow: 0 2px 20px rgba(0,0,0,.25); }
+.shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .meta { display: flex; justify-content: space-between; gap: 12px; margin-top: 14px; }
 .meta b { font-weight: 500; }
 .meta span { color: var(--soft); }
@@ -141,22 +135,22 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <p style="color:var(--soft);max-width:34ch;margin:0">Four projects, start to finish. Ask me about the rest.</p>
     </div>
     <div class="grid">
-      <!-- ✏️ EDIT: each project. Swap the .art block for <img src="images/project.jpg" alt="..."> -->
+      <!-- ✏️ EDIT: each project. Put your images in the images folder and change the src, name and tags. -->
       <a class="project" href="#contact" data-fx="tilt" data-af-tilt="3" data-af-pull="4">
-        <figure class="shot" data-fx="curtain" data-af-direction="up" style="margin:0"><div class="art art-1" data-fx="grain"><span class="mark">Ember</span></div></figure>
-        <div class="meta"><b>Ember Coffee</b><span>Identity · Packaging</span></div>
+        <figure class="shot" data-fx="curtain" data-af-direction="up" style="margin:0"><img src="images/couture.jpg" alt="Couture wordmark in a serif typeface with a gold foil finish" width="1200" height="900"></figure>
+        <div class="meta"><b>Atelier Couture</b><span>Identity · Typography</span></div>
       </a>
       <a class="project" href="#contact" data-fx="tilt" data-af-tilt="3" data-af-pull="4">
-        <figure class="shot" data-fx="curtain" data-af-direction="up" style="margin:0"><div class="art art-2" data-fx="grain"><span class="mark">Tide</span></div></figure>
-        <div class="meta"><b>Tide Studio</b><span>Campaign</span></div>
+        <figure class="shot" data-fx="curtain" data-af-direction="up" style="margin:0"><img src="images/fitting-ticket.jpg" alt="Frosted glass interface card showing a fitting ticket with measurements" width="1200" height="900"></figure>
+        <div class="meta"><b>Fitting Ticket</b><span>Interface design</span></div>
       </a>
       <a class="project" href="#contact" data-fx="tilt" data-af-tilt="3" data-af-pull="4">
-        <figure class="shot" data-fx="curtain" data-af-direction="up" style="margin:0"><div class="art art-3" data-fx="grain"><span class="mark">Nocturne</span></div></figure>
-        <div class="meta"><b>Nocturne</b><span>Album art · Motion</span></div>
+        <figure class="shot" data-fx="curtain" data-af-direction="up" style="margin:0"><img src="images/dress-form.jpg" alt="Line illustration of a dressmaker's form with a needle and thread" width="1200" height="900"></figure>
+        <div class="meta"><b>The Dress Form</b><span>Illustration · Motion</span></div>
       </a>
       <a class="project" href="#contact" data-fx="tilt" data-af-tilt="3" data-af-pull="4">
-        <figure class="shot" data-fx="curtain" data-af-direction="up" style="margin:0"><div class="art art-4" data-fx="grain"><span class="mark">Golden Hour</span></div></figure>
-        <div class="meta"><b>Golden Hour Skincare</b><span>Content · Social</span></div>
+        <figure class="shot" data-fx="curtain" data-af-direction="up" style="margin:0"><img src="images/swatches.jpg" alt="Three fabric swatch cards in plum, navy and gold" width="1200" height="900"></figure>
+        <div class="meta"><b>Swatch Library</b><span>Art direction</span></div>
       </a>
     </div>
   </section>
